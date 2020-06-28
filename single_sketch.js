@@ -34,7 +34,7 @@ function Spot(i,j){
   this.previous=undefined;
   this.wall = false;
 
-  if(random(1) < 0.9){
+  if(random(1) < 0.2){
     this.wall = true;
   }
 
