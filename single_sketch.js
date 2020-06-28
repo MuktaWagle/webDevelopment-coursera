@@ -32,7 +32,7 @@ function Spot(i,j){
   this.h = 0;
   this.neighbors = [];
   this.previous=undefined;
-  this.wall = false;
+  this.wall = false; 
 
   if(random(1) < 0.2){
     this.wall = true;
