@@ -13,8 +13,8 @@ function heuristic(a,b){
   return d;
 }
 
-var cols = 25;
-var rows = 25;
+var cols = 50;
+var rows = 27;
 var grid = new Array(cols);
 
 var openSet = [];
@@ -24,6 +24,7 @@ var end;
 var w,h;
 var path=[];
 
+
 function Spot(i,j){
   this.i = i;
   this.j = j;
@@ -32,7 +33,7 @@ function Spot(i,j){
   this.h = 0;
   this.neighbors = [];
   this.previous=undefined;
-  this.wall = false; 
+  this.wall = false;
 
   if(random(1) < 0.2){
     this.wall = true;
@@ -62,11 +63,23 @@ function Spot(i,j){
     if(j>0){
     this.neighbors.push(grid[i][j-1]);
     }
+    if(i>0 && j>0){
+      this.neighbors.push(grid[i-1][j-1]);
+    }
+    if(i<cols-1 && j>0){
+      this.neighbors.push(grid[i+1][j-1]);
+    }
+    if(i>0 && j<rows-1){
+      this.neighbors.push(grid[i-1][j+1]);
+    }
+    if(i<cols-1 && j<rows-1){
+      this.neighbors.push(grid[i+1][j+1]);
+    }
   }
 }
 
 function setup (){
-  createCanvas (600, 600);
+  createCanvas (1200, 700);
   console.log('A*');
 
   w=width/cols;
@@ -90,7 +103,7 @@ function setup (){
   }
 
   start = grid[0][0];
-  end = grid[24][24];
+  end = grid[44][24];
   start.wall = false;
   end.wall = false;
 
@@ -154,6 +167,9 @@ function draw(){
 
   else {
      console.log('no solution');
+     noLoop();
+     return;
+     
   }
   
 
@@ -176,7 +192,7 @@ function draw(){
     path.push(temp);
     while(temp.previous){
       path.push(temp.previous);
-      temp=temp.previous;
+      temp=temp.previous; 
     }
 
   for(var i=0; i<path.length; i++){
