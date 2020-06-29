@@ -115,7 +115,7 @@ console.log(grid);
 
 
 
-function draw(){
+function draw(){   //this goes on looping until noLoop or return happens
 
   background(0);  //color of canvas 
   
